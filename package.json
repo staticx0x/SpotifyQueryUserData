@@ -1,0 +1,17 @@
+{
+  "name": "spotify_display_data",
+  "version": "0.0.1",
+  "description": "Shows relevant user data after obtaining user token",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2"
+  }
+}
