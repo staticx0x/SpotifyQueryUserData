@@ -12,13 +12,14 @@ const auth = async () => {
 }
 
 const getTrack = async () => {
+    const token = await auth()
     const res = await axios.get('https://api.spotify.com/v1/tracks/33bsk1Zn8QAAJnE7erlCtP', {
         headers: {
-            'Authorization': `Bearer BQDBrfNcYTv1R_JG84Jrkb05bc-M6ACfCTYP9fu8dWa1UDR8MCU_KXSXc7azn7nzjbwkB-4C2c-eHpK-KV_o55MmOEx_1Ufp1UejEwUuQtEYaxwf2Igc`
+            'Authorization': `Bearer ${token}`
         }
     })
-    //const data = [ res.data.]
-    console.log(res.data)
+    //sends back info for given track in JSON
+    return res.data
 }
-getTrack()
-module.exports = auth
+
+module.exports = auth, getTrack

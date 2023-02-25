@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const getAuth = require('/Users/davidnunez/Documents/protoWebsite/server_scripts/api')
+const api = require('/Users/davidnunez/Documents/protoWebsite/server_scripts/api')
 
 router.get('/', (req, res) => {
     console.log('request "/" received')
@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 router.get('/token', (req, res) => {
     console.log('request "/token" received')
-    getAuth()
+    api.getAuth()
     .then(result => {
         res.send(result)
     })
