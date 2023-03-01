@@ -17,19 +17,21 @@ const auth = async () => {
 
 const userAuth = async () => {
     const res = await axios.get(`https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=code&redirect_uri=http://127.0.0.1:3000&scope=user_top_read`)
+    console.log(res.data)
     return res
 }
 
 const getTrack = async () => {
+    let retry = 0
     const res = await axios.get(`${spotifyUrl}/tracks/33bsk1Zn8QAAJnE7erlCtP`, {
         headers: {
             'Authorization': `Bearer ${clientToken}`
     }})
-    //Logic for expired token
-    if(res.status == 401){
+    //Will attempt one retry with a new token
+    if(res.status == 401 && retry == 0){
         console.log(res.status + '\nBad or expired token, refreshing token and retrying automatically...')
         auth()
-        getTrack()
+        return getTrack()
     }
     //Send response back
     return res.data
